@@ -1,16 +1,10 @@
 <?php
+include_once __DIR__ . "/../helpers/LoadData.php";
+include_once __DIR__ . "/../helpers/SaveData.php";
+
 function DeleteCommand($arguments)
 {
-    $path = __DIR__ . "/../data/tasks.json";
-    $data = file_get_contents($path);
-
-
-    if (!file_exists($path)) {
-        echo "файл tasks.json не найден";
-        return;
-    };
-
-    $data = json_decode($data, true);
+     $data = LoadData();
 
     $id = ($arguments[2]) ? (int)$arguments[2] : null;
     if (empty($id)) {
@@ -34,6 +28,6 @@ function DeleteCommand($arguments)
     }
 
     $data["tasks"] = array_values($data["tasks"]);
-    file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+    SaveData($data);
     echo "Задача удалена";
 };

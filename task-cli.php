@@ -5,6 +5,7 @@ include_once __DIR__ . "/src/commands/UpdateCommand.php";
 include_once __DIR__ . "/src/commands/DeleteCommand.php";
 include_once __DIR__ . "/src/commands/ListCommand.php";
 include_once __DIR__ . "/src/commands/MarkCommand.php";
+include_once __DIR__ . "/src/commands/HelpCommand.php";
 
 $arguments = $argv;
 unset($arguments[0]);
@@ -27,6 +28,7 @@ switch ($command) {
     case "mark-done":
         MarkCommand($arguments);
         break;
+    case "help":
     default:
-        echo "Некорректно введена команда";
+        HelpCommand();
 }

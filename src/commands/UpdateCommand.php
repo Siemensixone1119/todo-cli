@@ -1,16 +1,11 @@
 <?php
+include_once __DIR__ . "/../helpers/LoadData.php";
+include_once __DIR__ . "/../helpers/SaveData.php";
+include_once __DIR__ . "/../helpers/GenerateTime.php";
+
 function UpdateCommand($arguments)
 {
-  $path = __DIR__ . "/../data/tasks.json";
-  $data = file_get_contents($path);
-
-  if (!file_exists($path)) {
-    echo "файл tasks.json не найден";
-    return;
-  }
-  ;
-
-  $data = json_decode($data, true);
+  $data = LoadData();
 
   $id = ($arguments[2]) ? (int) $arguments[2] : null;
   $description = $arguments[3] ?? null;
@@ -30,7 +25,7 @@ function UpdateCommand($arguments)
   foreach ($data["tasks"] as $task_id => $task) {
     if ($task["id"] == $id) {
       $data["tasks"][$task_id]["description"] = $description;
-      $data["tasks"][$task_id]["updatedAt"] = (new DateTime("now", new DateTimeZone("+03:00")))->format("Y-m-d H:i");
+      $data["tasks"][$task_id]["updatedAt"] = GenerateTime();
       $found_id = true;
       break;
     }
@@ -41,7 +36,7 @@ function UpdateCommand($arguments)
     return;
   }
 
-  file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+  SaveData($data);
   echo "Задача обновленна";
 }
 ;

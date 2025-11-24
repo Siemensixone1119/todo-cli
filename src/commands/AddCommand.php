@@ -1,15 +1,11 @@
 <?php
+include_once __DIR__ . "/../helpers/LoadData.php";
+include_once __DIR__ . "/../helpers/SaveData.php";
+include_once __DIR__ . "/../helpers/GenerateTime.php";
+
 function AddCommand($arguments)
 {
-    $path = __DIR__ . "/../data/tasks.json";
-    $data = file_get_contents($path);
-
-    if (!file_exists($path)) {
-        echo "файл tasks.json не найден";
-        return;
-    };
-
-    $data = json_decode($data, true);
+    $data = LoadData();
 
     $description = $arguments[2] ?? null;
 
@@ -20,18 +16,16 @@ function AddCommand($arguments)
 
     $id = count($data["tasks"]) > 0 ? end($data["tasks"])["id"] + 1 : 1;
 
-    $time = (new DateTime("now", new DateTimeZone("+03:00")))->format("Y-m-d H:i");
-
     $task = [
         "id" => $id,
         "description" => $description,
         "status" => "todo",
-        "createdAt" => $time,
-        "updatedAt" => $time,
+        "createdAt" => GenerateTime(),
+        "updatedAt" => GenerateTime(),
     ];
 
     $data["tasks"][] = $task;
-    file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
+    SaveData($data);
     echo "Задача добавлена";
-};
+}
+;

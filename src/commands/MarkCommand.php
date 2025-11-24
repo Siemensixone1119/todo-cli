@@ -1,16 +1,11 @@
 <?php
+include_once __DIR__ . "/../helpers/LoadData.php";
+include_once __DIR__ . "/../helpers/SaveData.php";
+
 function MarkCommand($arguments)
 {
-  $path = __DIR__ . "/../data/tasks.json";
-  $data = file_get_contents($path);
 
-  if (!file_exists($path)) {
-    echo "файл tasks.json не найден";
-    return;
-  }
-  ;
-
-  $data = json_decode($data, true);
+  $data = LoadData();
 
   $command = $arguments[1];
 
@@ -24,10 +19,10 @@ function MarkCommand($arguments)
       $status = "done";
       break;
     default:
-      echo "Некорректно введена команда";
+      echo "Команда введенеа некорректно";
+      return;
   }
   ;
-
 
   if (empty($id)) {
     echo "Отсутствует id задачи";
@@ -52,7 +47,7 @@ function MarkCommand($arguments)
     return;
   }
 
-  file_put_contents($path, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+  SaveData($data);
   echo "Статус задачи изменен";
 }
 ;

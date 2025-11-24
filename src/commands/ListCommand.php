@@ -1,16 +1,10 @@
 <?php
+include_once __DIR__ . "/../helpers/LoadData.php";
+include_once __DIR__ . "/../helpers/SaveData.php";
+
 function ListCommand($arguments)
 {
-  $path = __DIR__ . "/../data/tasks.json";
-  $data = file_get_contents($path);
-
-  if (!file_exists($path)) {
-    echo "файл tasks.json не найден";
-    return;
-  }
-  ;
-
-  $data = json_decode($data, true);
+   $data = LoadData();
 
   $item = $arguments[2] ?? null;
 
