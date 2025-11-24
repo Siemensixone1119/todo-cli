@@ -20,7 +20,7 @@ function AddCommand($arguments)
 
     $id = count($data["tasks"]) > 0 ? end($data["tasks"])["id"] + 1 : 1;
 
-    $time = new DateTime("now", new DateTimeZone("+03:00"));
+    $time = (new DateTime("now", new DateTimeZone("+03:00")))->format("Y-m-d H:i");
 
     $task = [
         "id" => $id,

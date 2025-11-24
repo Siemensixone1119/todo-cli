@@ -15,18 +15,18 @@ switch ($command) {
         AddCommand($arguments);
         break;
     case "update":
-        UpdateCommand();
+        UpdateCommand($arguments);
         break;
     case "delete":
         DeleteCommand($arguments);
         break;
     case "list":
-        ListCommand();
+        ListCommand($arguments);
         break;
     case "mark-in-progress":
     case "mark-done":
-        MarkCommand();
+        MarkCommand($arguments);
         break;
-    default;
+    default:
         echo "Некорректно введена команда";
 }
