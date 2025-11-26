@@ -1,10 +1,16 @@
 <?php
+include_once __DIR__ . "/../helpers/ConsoleStyle.php";
 function HelpCommand()
 {
-  echo "\n\033[32madd\033[0m description - Добавление задачи\n";
-  echo "\033[32mdelete\033[0m id - Добавление задачи\n";
-  echo "\033[32mupdate\033[0m id description - Добавление задачи\n";
-  echo "\033[32mlist\033[0m {todo/done/in-progress} - Добавление задачи\n";
-  echo "\033[32mmark-in-progress\033[0m id - Добавление задачи\n";
-  echo "\033[32mmark-done\033[0m id - Добавление задачи\n";
+ consoleHeader("TODO CLI — список команд");
+
+    consoleLine("add <description>", "green", "Добавить новую задачу");
+    consoleLine("update <id> <description>", "green", "Обновить описание задачи");
+    consoleLine("delete <id>", "green", "Удалить задачу");
+    consoleLine("list [todo|in-progress|done]", "green", "Показать список задач");
+    consoleLine("mark-in-progress <id>", "green", "Отметить как в процессе");
+    consoleLine("mark-done <id>", "green", "Отметить как выполненную");
+    consoleLine("help", "green", "Показать справку");
+
+    consoleFooter();
 }
