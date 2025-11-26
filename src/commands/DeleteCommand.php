@@ -8,7 +8,7 @@ function DeleteCommand($arguments)
 
     $id = ($arguments[2]) ? (int)$arguments[2] : null;
     if (empty($id)) {
-        echo "Отсутствует id задачи";
+        echo "Отсутствует id задачи\n";
         return;
     }
 
@@ -23,11 +23,11 @@ function DeleteCommand($arguments)
     }
 
     if (!$found_id) {
-        echo "Задача не найдена";
+        echo "Задача не найдена\n";
         return;
     }
 
     $data["tasks"] = array_values($data["tasks"]);
     SaveData($data);
-    echo "Задача удалена";
+    echo "Задача удалена\n";
 };

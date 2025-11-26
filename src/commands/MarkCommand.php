@@ -19,13 +19,13 @@ function MarkCommand($arguments)
       $status = "done";
       break;
     default:
-      echo "Команда введенеа некорректно";
+      echo "Команда введенеа некорректно\n";
       return;
   }
   ;
 
   if (empty($id)) {
-    echo "Отсутствует id задачи";
+    echo "Отсутствует id задачи\n";
     return;
   }
   ;
@@ -43,11 +43,11 @@ function MarkCommand($arguments)
   ;
 
   if (!$found_id) {
-    echo "Задача не найдена";
+    echo "Задача не найдена\n";
     return;
   }
 
   SaveData($data);
-  echo "Статус задачи изменен";
+  echo "Статус задачи изменен\n";
 }
 ;

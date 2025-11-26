@@ -10,7 +10,7 @@ function AddCommand($arguments)
     $description = $arguments[2] ?? null;
 
     if (empty($description)) {
-        echo "Отсутствует описание задачи";
+        echo "Отсутствует описание задачи\n";
         return;
     }
 
@@ -26,6 +26,6 @@ function AddCommand($arguments)
 
     $data["tasks"][] = $task;
     SaveData($data);
-    echo "Задача добавлена";
+    echo "Задача добавлена\n";
 }
 ;

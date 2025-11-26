@@ -33,7 +33,7 @@ function ListCommand($arguments)
       }
     }
   } else {
-    echo "Параметры комманды введены некорректно";
+    echo "Параметры комманды введены некорректно\n";
     return;
   }
 
@@ -44,5 +44,7 @@ function ListCommand($arguments)
     echo $task["createdAt"] . "\n";
     echo $task["updatedAt"] . "\n\n";
   }
+
+  return $result;
 }
 ;

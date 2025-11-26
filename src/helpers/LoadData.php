@@ -1,19 +1,19 @@
 <?php
 function LoadData()
 {
-  $path = __DIR__ . "/../data/tasks.json";
-  $data = file_get_contents($path);
+  $path = $GLOBALS["TASKS"] ?? (__DIR__ . "/../data/tasks.json");
 
   if (!file_exists($path)) {
     echo "файл tasks.json не найден";
     return;
   }
-  ;
 
-  if(!$data["tasks"]){
-    echo "поле tasks отсутствует в raska.json"; 
+  $data = json_decode(file_get_contents($path), true);
+
+  if (!$data["tasks"]) {
+    echo "поле tasks отсутствует в raska.json";
   }
 
-  $data = json_decode($data, true);
   return $data;
+
 }

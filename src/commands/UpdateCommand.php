@@ -11,12 +11,12 @@ function UpdateCommand($arguments)
   $description = $arguments[3] ?? null;
 
   if (empty($id)) {
-    echo "Отсутствует id задачи";
+    echo "Отсутствует id задачи\n";
     return;
   }
 
   if (empty($description)) {
-    echo "Отсутствует описание задачи";
+    echo "Отсутствует описание задачи\n";
     return;
   }
 
@@ -32,11 +32,11 @@ function UpdateCommand($arguments)
   }
 
   if (!$found_id) {
-    echo "Задача не найдена";
+    echo "Задача не найдена\n";
     return;
   }
 
   SaveData($data);
-  echo "Задача обновленна";
+  echo "Задача обновленна\n";
 }
 ;
